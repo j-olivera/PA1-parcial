@@ -30,7 +30,7 @@ public class TestModelPiloto {
         LocalDate fecha_nacimiento = LocalDate.of(2000, 12, 12);
         //act y assert
         DatosObligatoriosException e = Assertions.assertThrows(DatosObligatoriosException.class, ()-> Piloto.crearPiloto(UUID.randomUUID(),nombre,dni,fecha_nacimiento));
-        Assertions.assertEquals(e.getMessage(),"Los datos son obligatorios");
+        Assertions.assertEquals("Los datos son obligatorios", e.getMessage());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class TestModelPiloto {
         LocalDate fecha_nacimiento = LocalDate.of(2020, 12, 12);
         //act y assert
         EdadNoValidaException e = Assertions.assertThrows(EdadNoValidaException.class, ()-> Piloto.crearPiloto(UUID.randomUUID(),nombre,dni,fecha_nacimiento));
-        Assertions.assertEquals(e.getMessage(),"La edad debe ser mayor a 18 años");
+        Assertions.assertEquals("La edad debe ser mayor a 18 años", e.getMessage());
     }
 
 }
