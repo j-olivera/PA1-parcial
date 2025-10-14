@@ -20,10 +20,10 @@ public class Piloto {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public static Piloto crearPiloto(String nombre, String documento, LocalDate fechaNacimiento){
+    public static Piloto crearPiloto(UUID licencia,String nombre, String documento, LocalDate fechaNacimiento){
         validarDatosObligatoriosDelPiloto(nombre, documento, fechaNacimiento);
         validarEdadPiloto(fechaNacimiento);
-        return new Piloto(UUID.randomUUID(), nombre, documento, fechaNacimiento);
+        return new Piloto(licencia, nombre, documento, fechaNacimiento);
     }
 
     private static void validarEdadPiloto(LocalDate fechaNacimiento) {

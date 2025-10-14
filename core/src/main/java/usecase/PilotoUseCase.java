@@ -22,7 +22,8 @@ public class PilotoUseCase implements RegistrarPiloto, VerificarSiExistePorDni {
         if(pilotoRepository.existePorDni(dni)){
             throw new DniYaExisteException("Este DNI ya ha sido registrado");
         }
-        Piloto piloto = Piloto.crearPiloto(nombre, dni, fechaNacimiento);
+        UUID licencia = UUID.randomUUID();
+        Piloto piloto = Piloto.crearPiloto(licencia,nombre, dni, fechaNacimiento);
         return pilotoRepository.save(piloto);
     }
 

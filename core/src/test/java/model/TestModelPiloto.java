@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class TestModelPiloto {
     @Test
@@ -14,7 +15,8 @@ public class TestModelPiloto {
         String nombre = "Fanco Colapinto";
         String dni = "123456ABC";
         LocalDate fecha_nacimiento = LocalDate.of(2000, 12, 12);
-        Piloto piloto = Piloto.crearPiloto(nombre,dni,fecha_nacimiento);
+        UUID licencia = UUID.randomUUID();
+        Piloto piloto = Piloto.crearPiloto(licencia,nombre,dni,fecha_nacimiento);
         // act y assert
         Assertions.assertNotNull(piloto);
         Assertions.assertEquals(nombre,piloto.getNombre());
@@ -27,7 +29,7 @@ public class TestModelPiloto {
         String dni = "123456ABC";
         LocalDate fecha_nacimiento = LocalDate.of(2000, 12, 12);
         //act y assert
-        DatosObligatoriosException e = Assertions.assertThrows(DatosObligatoriosException.class, ()-> Piloto.crearPiloto(nombre,dni,fecha_nacimiento));
+        DatosObligatoriosException e = Assertions.assertThrows(DatosObligatoriosException.class, ()-> Piloto.crearPiloto(UUID.randomUUID(),nombre,dni,fecha_nacimiento));
         Assertions.assertEquals(e.getMessage(),"Los datos son obligatorios");
     }
 
@@ -38,7 +40,7 @@ public class TestModelPiloto {
         String dni = "123456ABC";
         LocalDate fecha_nacimiento = LocalDate.of(2020, 12, 12);
         //act y assert
-        EdadNoValidaException e = Assertions.assertThrows(EdadNoValidaException.class, ()-> Piloto.crearPiloto(nombre,dni,fecha_nacimiento));
+        EdadNoValidaException e = Assertions.assertThrows(EdadNoValidaException.class, ()-> Piloto.crearPiloto(UUID.randomUUID(),nombre,dni,fecha_nacimiento));
         Assertions.assertEquals(e.getMessage(),"La edad debe ser mayor a 18 años");
     }
 

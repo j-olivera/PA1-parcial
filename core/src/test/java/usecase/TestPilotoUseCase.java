@@ -30,7 +30,8 @@ public class TestPilotoUseCase {
         String nombre = "Franco Colapinto";
         String dni = "123456ABC";
         LocalDate fecha_nacimiento = LocalDate.of(2000, 12, 12);
-        Piloto esperado = Piloto.crearPiloto(nombre,dni,fecha_nacimiento);
+        UUID licencia = UUID.randomUUID();
+        Piloto esperado = Piloto.crearPiloto(licencia,nombre,dni,fecha_nacimiento);
         when(pilotoRepository.save(any(Piloto.class))).thenReturn(esperado.getLicencia());
         //Act
         UUID resultado = pilotoUseCase.guardarPiloto(nombre,dni,fecha_nacimiento);
