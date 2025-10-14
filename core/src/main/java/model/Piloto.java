@@ -1,5 +1,8 @@
 package model;
 
+import exception.DatosObligatoriosException;
+import exception.EdadNoValidaException;
+
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -24,10 +27,15 @@ public class Piloto {
     }
 
     private static void validarEdadPiloto(LocalDate fechaNacimiento) {
+        if(fechaNacimiento.isAfter(LocalDate.now().minusYears(18))){
+            throw new EdadNoValidaException("La edad debe ser mayor a 18 años");
+        }
     }
 
     private static void validarDatosObligatoriosDelPiloto(String nombre, String documento, LocalDate fechaNacimiento) {
-
+        if(nombre == null || documento == null || fechaNacimiento == null || nombre.isEmpty() || documento.isEmpty()){
+            throw new DatosObligatoriosException("Los datos son obligatorios");
+        }
     }
 
     public UUID getLicencia() {
