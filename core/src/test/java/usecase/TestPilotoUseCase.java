@@ -1,5 +1,6 @@
 package usecase;
 
+import exception.DniYaExisteException;
 import model.Piloto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -37,8 +38,15 @@ public class TestPilotoUseCase {
         Assertions.assertEquals(esperado.getLicencia(),resultado);
         verify(pilotoRepository,times(1)).save(any(Piloto.class));
     }
+    @Test
     void testDniYaRegistrado(){
         //
+        String nombre = "Franco Colapinto";
+        String dni = "123456ABC";
+        LocalDate fecha_nacimiento = LocalDate.of(2000, 12, 12);
+        when(pilotoRepository.existePorDni("123456ABC")).thenReturn(true);
+        //Act y Assert
+        Assertions.assertThrows(DniYaExisteException.class, () -> pilotoUseCase.guardarPiloto(nombre,dni,fecha_nacimiento));
     }
 }
 //El caso de uso debe devolver la Licencia asignada al Piloto creado con éxito
