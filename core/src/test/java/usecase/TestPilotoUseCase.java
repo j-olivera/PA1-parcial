@@ -40,7 +40,7 @@ public class TestPilotoUseCase {
     }
     @Test
     void testDniYaRegistrado(){
-        //
+        //Arrange
         String nombre = "Franco Colapinto";
         String dni = "123456ABC";
         LocalDate fecha_nacimiento = LocalDate.of(2000, 12, 12);
@@ -50,6 +50,4 @@ public class TestPilotoUseCase {
         verify(pilotoRepository,never()).save(any(Piloto.class));
     }
 }
-//El caso de uso debe devolver la Licencia asignada al Piloto creado con éxito
-//No puede existir dos Pilotos con el mismo documento
 
