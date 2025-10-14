@@ -28,7 +28,7 @@ public class Piloto {
 
     private static void validarEdadPiloto(LocalDate fechaNacimiento) {
         if(fechaNacimiento.isAfter(LocalDate.now().minusYears(18))){
-            throw new EdadNoValidaException("La edad debe ser mayor a 18 años");
+            throw new EdadNoValidaException("La edad debe al menos 18 años");
         }
     }
 

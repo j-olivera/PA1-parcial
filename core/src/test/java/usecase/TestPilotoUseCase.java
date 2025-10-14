@@ -33,11 +33,13 @@ public class TestPilotoUseCase {
         UUID licencia = UUID.randomUUID();
         Piloto esperado = Piloto.crearPiloto(licencia,nombre,dni,fecha_nacimiento);
         when(pilotoRepository.save(any(Piloto.class))).thenReturn(esperado.getLicencia());
+        when(pilotoRepository.existePorDni(dni)).thenReturn(false);
         //Act
         UUID resultado = pilotoUseCase.guardarPiloto(nombre,dni,fecha_nacimiento);
         //Assert
-        Assertions.assertEquals(esperado.getLicencia(),resultado);
+        Assertions.assertEquals(resultado,esperado.getLicencia());
         verify(pilotoRepository,times(1)).save(any(Piloto.class));
+        verify(pilotoRepository,times(1)).existePorDni(dni);
     }
     @Test
     void testDniYaRegistrado(){
