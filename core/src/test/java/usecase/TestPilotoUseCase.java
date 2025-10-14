@@ -47,6 +47,7 @@ public class TestPilotoUseCase {
         when(pilotoRepository.existePorDni("123456ABC")).thenReturn(true);
         //Act y Assert
         Assertions.assertThrows(DniYaExisteException.class, () -> pilotoUseCase.guardarPiloto(nombre,dni,fecha_nacimiento));
+        verify(pilotoRepository,never()).save(any(Piloto.class));
     }
 }
 //El caso de uso debe devolver la Licencia asignada al Piloto creado con éxito
